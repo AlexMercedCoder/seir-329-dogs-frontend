@@ -2,7 +2,7 @@ import React from "react";
 
 const Display = (props) => {
   // destruct the dogs from props
-  const { dogs } = props
+  const {dogs, selectDog, history} = props
 
   // Returns the JSX for when you have dogs
   const loaded = () => (
@@ -12,6 +12,12 @@ const Display = (props) => {
           <img src={dog.img}/>
           <h1>{dog.name}</h1>
           <h3>{dog.age}</h3>
+          <button onClick={() => {
+            selectDog(dog)
+            history.push("/edit")
+          }}>
+            edit
+          </button>
         </article>
       ))}
     </div>
