@@ -6,7 +6,7 @@ import Form from "./Form";
 
 function App() {
   // URL in a variable
-  const url = "http://localhost:4500";
+  const url = "https://dogapp-329-backend-am.herokuapp.com";
 
   // State to hold the list of dogs
   const [dogs, setDogs] = React.useState([]);
@@ -65,6 +65,16 @@ function App() {
     setSelectedDog(dog);
   };
 
+  // deleteDog to delete inidividual dogs
+  const deleteDog = (dog) => {
+    fetch(url + "/dog/" + dog._id, {
+      method: "delete"
+    })
+    .then(() => {
+      getDogs()
+    })
+  }
+
   return (
     <div className="App">
       <h1>DOG LISTING SITE</h1>
@@ -78,7 +88,12 @@ function App() {
             exact
             path="/"
             render={(rp) => (
-              <Display {...rp} dogs={dogs} selectDog={selectDog} />
+              <Display 
+              {...rp} 
+              dogs={dogs} 
+              selectDog={selectDog}
+              deleteDog={deleteDog} 
+              />
             )}
           />
           <Route

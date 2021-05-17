@@ -18,6 +18,11 @@ const Display = (props) => {
           }}>
             edit
           </button>
+          <button onClick={() => {
+            props.deleteDog(dog)
+          }}>
+            Delete
+          </button>
         </article>
       ))}
     </div>
